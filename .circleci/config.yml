@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - run: tasks/e2e-simple.sh
+      - run: sudo tasks/e2e-simple.sh
 
 workflows:
   version: 2
