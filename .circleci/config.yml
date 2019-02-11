@@ -11,5 +11,6 @@ jobs:
 
 workflows:
   version: 2
-  jobs:
-    - node10_simple
+  build_and_test:
+    jobs:
+      - node10_simple
