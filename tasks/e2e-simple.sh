@@ -9,15 +9,31 @@
 # You can also run it locally but it's slow.
 # ******************************************************************************
 
+echo "npm config:"
+npm config list
+
+echo ""
+echo "npm config ls -l"
+npm config ls -l
+
+echo ""
+echo "userconfig"
+cat ~/.npmrc
+
+echo ""
+echo "global config"
+cat /opt/hostedtoolcache/node/8.15.0/x64/etc/npmrc
+cat /c/npm/prefix/etc/npmrc
+
 # Start in tasks/ even if run from root directory
 cd "$(dirname "$0")"
 
 # App temporary location
 # http://unix.stackexchange.com/a/84980
 temp_app_path=`mktemp -d 2>/dev/null || mktemp -d -t 'temp_app_path'`
-custom_registry_url=http://localhost:4873
-original_npm_registry_url=`npm get registry`
-original_yarn_registry_url=`yarn config get registry`
+
+# Load Verdaccio-related functions
+source verdaccio.sh
 
 function cleanup {
   echo 'Cleaning up.'
@@ -26,8 +42,8 @@ function cleanup {
   # Uncomment when snapshot testing is enabled by default:
   # rm ./packages/react-scripts/template/src/__snapshots__/App.test.js.snap
   rm -rf "$temp_app_path"
-  npm set registry "$original_npm_registry_url"
-  yarn config set registry "$original_yarn_registry_url"
+  # Restore the original NPM and Yarn registry URLs
+  restoreRegistryUrls
 }
 
 # Error messages are redirected to stderr
@@ -85,18 +101,8 @@ fi
 # Bootstrap monorepo
 yarn
 
-# Start local registry
-tmp_registry_log=`mktemp`
-(cd && nohup npx verdaccio@3.8.2 -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
-# Wait for `verdaccio` to boot
-grep -q 'http address' <(tail -f $tmp_registry_log)
-
-# Set registry to local registry
-npm set registry "$custom_registry_url"
-yarn config set registry "$custom_registry_url"
-
-# Login so we can publish packages
-(cd && npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r "$custom_registry_url")
+# Start the local NPM registry
+startVerdaccio "$root_path"/tasks/verdaccio.yaml
 
 # Lint own code
 ./node_modules/.bin/eslint --max-warnings 0 packages/babel-preset-react-app/

@@ -1,0 +1,18 @@
+#
+# Azure Pipelines steps for building and testing create-react-app on Linux, Windows, and macOS.
+#
+
+steps:
+  - script: git config --global core.autocrlf false
+    displayName: 'Ensure LF line endings (Windows only)'
+    condition: eq(variables['Agent.OS'], 'Windows_NT')
+
+  - checkout: self
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(NODE_VERSION)
+    displayName: 'Install Node.js'
+
+  - script: yarn --frozen-lockfile
+    displayName: 'Install packages'
