@@ -30,6 +30,8 @@ if [ -z $CI ]; then
   yarn compile:lockfile
 fi
 
+git diff --exit-code
+
 if [ -n "$(git status --porcelain)" ]; then
   echo "Your git status is not clean. Aborting.";
   exit 1;
