@@ -15,7 +15,5 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: |
-    yarn
-    yarn build
-  displayName: 'yarn install and build'
+- script: tasks/e2e-simple.sh
+  displayName: 'e2e-simple'
