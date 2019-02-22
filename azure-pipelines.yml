@@ -5,32 +5,28 @@
 trigger:
 - master
 
-variables:
-  matrix:
-    LinuxNode8:
-      NODE_VERSION: 8.x
-      VM_IMAGE: 'ubuntu-16.04'
-    LinuxNode10:
-      NODE_VERSION: 10.x
-      VM_IMAGE: 'ubuntu-16.04'
-    MacNode8:
-      NODE_VERSION: 8.x
-      VM_IMAGE: 'macOS-10.13'
-    MacNode10:
-      NODE_VERSION: 10.x
-      VM_IMAGE: 'macOS-10.13'
-    WindowsNode8:
-      NODE_VERSION: 8.x
-      VM_IMAGE: 'vs2017-win2016'
-    WindowsNode10:
-      NODE_VERSION: 10.x
-      VM_IMAGE: 'vs2017-win2016'
-
 jobs:
 - job: Simple
   strategy:
     matrix:
-      ${{ insert }}: ${{ variables.matrix }}
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
@@ -41,7 +37,24 @@ jobs:
 - job: Installs
   strategy:
     matrix:
-      ${{ insert }}: ${{ variables.matrix }}
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
@@ -52,7 +65,24 @@ jobs:
 - job: KitchenSink
   strategy:
     matrix:
-      ${{ insert }}: ${{ variables.matrix }}
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
@@ -63,7 +93,24 @@ jobs:
 - job: KitchenSinkEject
   strategy:
     matrix:
-      ${{ insert }}: ${{ variables.matrix }}
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
@@ -74,7 +121,24 @@ jobs:
 - job: OldNode
   strategy:
     matrix:
-      ${{ insert }}: ${{ variables.matrix }}
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
@@ -85,7 +149,24 @@ jobs:
 - job: Behavior
   strategy:
     matrix:
-      ${{ insert }}: ${{ variables.matrix }}
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
