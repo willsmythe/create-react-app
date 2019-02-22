@@ -1,19 +1,37 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+#
+# Azure Pipelines configuration for building and testing create-react-app on Linux, Windows, and macOS.
+#
 
 trigger:
 - master
 
-pool:
-  vmImage: 'Ubuntu-16.04'
+jobs:
+- template: azure-pipelines-steps.yml
+  parameters:
+    jobName: Simple
+    displayName: 'Simple'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+- template: azure-pipelines-steps.yml
+  parameters:
+    jobName: Installs
+    displayName: 'Installs'
 
-- script: tasks/e2e-simple.sh
-  displayName: 'e2e-simple'
+- template: azure-pipelines-steps.yml
+  parameters:
+    jobName: KitchenSink
+    displayName: 'Kitchen Sink'
+
+- template: azure-pipelines-steps.yml
+  parameters:
+    jobName: KitchenSinkEject
+    displayName: 'Kitchen Sink Eject'
+
+- template: azure-pipelines-steps.yml
+  parameters:
+    jobName: OldNode
+    displayName: 'Old Node'
+
+- template: azure-pipelines-steps.yml
+  parameters:
+    jobName: Behavior
+    displayName: 'Behavior'
