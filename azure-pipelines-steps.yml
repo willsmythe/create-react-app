@@ -2,60 +2,11 @@
 # Azure Pipelines steps for building and testing create-react-app on Linux, Windows, and macOS.
 #
 
-jobs:
-- job: ${{ parameters.jobName }}
-  displayName: ${{ parameters.displayName }}
-  strategy:
-    matrix:
-      LinuxNode8:
-        NODE_VERSION: 8.x
-        VM_IMAGE: 'ubuntu-16.04'
-      LinuxNode10:
-        NODE_VERSION: 10.x
-        VM_IMAGE: 'ubuntu-16.04'
-      MacNode8:
-        NODE_VERSION: 8.x
-        VM_IMAGE: 'macOS-10.13'
-      MacNode10:
-        NODE_VERSION: 10.x
-        VM_IMAGE: 'macOS-10.13'
-      WindowsNode8:
-        NODE_VERSION: 8.x
-        VM_IMAGE: 'vs2017-win2016'
-      WindowsNode10:
-        NODE_VERSION: 10.x
-        VM_IMAGE: 'vs2017-win2016'
-  pool: 
-    vmImage: $(VM_IMAGE)
-  steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: $(NODE_VERSION)
-      displayName: 'Install Node.js'
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(NODE_VERSION)
+    displayName: 'Install Node.js'
 
-    - script: yarn --frozen-lockfile
-      displayName: 'Install packages'
-
-    - ${{ if eq(parameters.jobName, 'Simple') }}:
-      - script: tasks/e2e-simple.sh
-        displayName: 'Run tests'
-
-    - ${{ if eq(parameters.jobName, 'Installs') }}:
-      - script: tasks/e2e-installs.sh
-        displayName: 'Run tests'
-
-    - ${{ if eq(parameters.jobName, 'KitchenSink') }}:
-      - script: tasks/e2e-kitchensink.sh
-        displayName: 'Run tests'
-
-    - ${{ if eq(parameters.jobName, 'KitchenSinkEject') }}:
-      - script: tasks/e2e-kitchensink-eject.sh
-        displayName: 'Run tests'
-
-    - ${{ if eq(parameters.jobName, 'OldNode') }}:
-      - script: tasks/e2e-old-node.sh
-        displayName: 'Run tests'
-
-    - ${{ if eq(parameters.jobName, 'Behavior') }}:
-      - script: tasks/e2e-behavior.sh
-        displayName: 'Run tests'
+  - script: yarn --frozen-lockfile
+    displayName: 'Install packages'
