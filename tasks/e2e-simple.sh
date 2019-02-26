@@ -9,6 +9,13 @@
 # You can also run it locally but it's slow.
 # ******************************************************************************
 
+echo "npm config:"
+npm config list
+
+echo ""
+echo "npm config ls -l"
+npm config ls -l
+
 # Start in tasks/ even if run from root directory
 cd "$(dirname "$0")"
 
