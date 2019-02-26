@@ -31,7 +31,7 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
-    - script: tasks/e2e-simple.sh
+    - bash: tasks/e2e-simple.sh
       displayName: 'Run tests'
 
 - job: Installs
@@ -59,7 +59,7 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
-    - script: tasks/e2e-installs.sh
+    - bash: tasks/e2e-installs.sh
       displayName: 'Run tests'
 
 - job: KitchenSink
@@ -87,7 +87,7 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
-    - script: tasks/e2e-kitchensink.sh
+    - bash: tasks/e2e-kitchensink.sh
       displayName: 'Run tests'
 
 - job: KitchenSinkEject
@@ -115,7 +115,7 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
-    - script: tasks/e2e-kitchensink-eject.sh
+    - bash: tasks/e2e-kitchensink-eject.sh
       displayName: 'Run tests'
 
 - job: OldNode
@@ -143,7 +143,7 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
-    - script: tasks/e2e-old-node.sh
+    - bash: tasks/e2e-old-node.sh
       displayName: 'Run tests'
 
 - job: Behavior
@@ -171,5 +171,5 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
-    - script: tasks/e2e-behavior.sh
+    - bash: tasks/e2e-behavior.sh
       displayName: 'Run tests'
