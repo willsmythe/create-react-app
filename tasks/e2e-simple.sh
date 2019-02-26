@@ -16,6 +16,15 @@ echo ""
 echo "npm config ls -l"
 npm config ls -l
 
+echo ""
+echo "userconfig"
+cat ~/.npmrc
+
+echo ""
+echo "global config"
+cat /opt/hostedtoolcache/node/8.15.0/x64/etc/npmrc
+cat /c/npm/prefix/etc/npmrc
+
 # Start in tasks/ even if run from root directory
 cd "$(dirname "$0")"
 
