@@ -3,6 +3,10 @@
 #
 
 steps:
+  - script: git config --global core.autocrlf false
+    
+  - checkout: self
+
   - task: NodeTool@0
     inputs:
       versionSpec: $(NODE_VERSION)
