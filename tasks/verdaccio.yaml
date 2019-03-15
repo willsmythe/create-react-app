@@ -20,9 +20,7 @@ auth:
 uplinks:
   npmjs:
     url: https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry/
-    max_fails: 20
-    timeout: 30s
-    maxage: 10m
+    max_fails: 999
     auth:
       type: bearer
       token_env: ARTIFACTS_TOKEN
