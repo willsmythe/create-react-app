@@ -19,7 +19,7 @@ auth:
 # a list of other known repositories we can talk to
 uplinks:
   npmjs:
-    url: http://registry.npmjs.org/
+    url: https://registry.npmjs.org/
     max_fails: 100
 
 packages:
@@ -47,4 +47,3 @@ packages:
 # log settings
 logs:
   - {type: stdout, format: pretty, level: http}
- # - {type: file, path: /home/vsts/work/_temp/verdaccio.log, level: http}
