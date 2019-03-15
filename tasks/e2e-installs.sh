@@ -29,7 +29,7 @@ function cleanup {
 
 # Error messages are redirected to stderr
 function handle_error {
-  cat $tmp_registry_log  
+  echo "##vso[task.uploadfile]$tmp_registry_log" 
   echo "$(basename $0): ERROR! An error was encountered executing line $1." 1>&2;
   cleanup
   echo 'Exiting with error.' 1>&2;
@@ -104,16 +104,12 @@ tmp_registry_log=`mktemp`
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
 
-cat $tmp_registry_log
-
 # Set registry to local registry
 npm set registry "$custom_registry_url"
 yarn config set registry "$custom_registry_url"
 
 # Login so we can publish packages
 (cd && npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r "$custom_registry_url")
-
-cat $tmp_registry_log
 
 # Publish the monorepo
 git clean -df
