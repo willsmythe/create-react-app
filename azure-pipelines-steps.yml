@@ -5,6 +5,16 @@
 steps:
   - script: git config --global core.autocrlf false    
   - checkout: self
+  
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(NODE_VERSION)
+    displayName: 'Install Node.js'
+
+  - bash: |
+      curl -o- -L https://yarnpkg.com/install.sh | bash -s
+      echo "##vso[task.prependpath]$HOME/.yarn/bin"
+    displayName: 'Install latest Yarn'
 
   - bash: |
       npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry
@@ -26,11 +36,6 @@ steps:
       cat $(npmrc_path)
       echo "-------------"
       npm config list
-  
-  - task: NodeTool@0
-    inputs:
-      versionSpec: $(NODE_VERSION)
-    displayName: 'Install Node.js'
 
   - script: yarn --frozen-lockfile
     displayName: 'Install packages'
