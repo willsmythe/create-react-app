@@ -21,9 +21,9 @@ uplinks:
   npmjs:
     url: https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry/
     max_fails: 10
-    #auth:
-     # type: bearer
-      #token_env: ARTIFACTS_TOKEN
+    auth:
+      type: bearer
+      token_env: ARTIFACTS_TOKEN
 
 packages:
   "@*/*":

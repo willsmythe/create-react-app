@@ -90,7 +90,7 @@ then
 fi
 
 # Bootstrap monorepo
-yarn
+yarn --verbose
 
 # ******************************************************************************
 # First, publish the monorepo.
