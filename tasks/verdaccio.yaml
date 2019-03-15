@@ -20,6 +20,7 @@ auth:
 uplinks:
   npmjs:
     url: http://registry.npmjs.org/
+    max_fails: 100
 
 packages:
   '@*/*':
@@ -46,4 +47,4 @@ packages:
 # log settings
 logs:
   - {type: stdout, format: pretty, level: http}
-  - {type: file, path: /home/vsts/work/_temp/verdaccio.log, level: http}
+ # - {type: file, path: /home/vsts/work/_temp/verdaccio.log, level: http}
