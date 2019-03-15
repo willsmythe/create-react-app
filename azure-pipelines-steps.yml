@@ -8,7 +8,9 @@ steps:
 
   - bash: |
       npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry
+      yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry --verbose
       npm config set always-auth true
+      
       t=~/.npmrc
       cat $t
       if [ "$OS" = "Windows_NT" ]; then
@@ -22,6 +24,11 @@ steps:
     inputs:
       workingFile: $(npmrc_path)
 
+  - bash: |
+      cat $(npmrc_path)
+      echo "-------------"
+      npm config list
+  
   - task: NodeTool@0
     inputs:
       versionSpec: $(NODE_VERSION)
