@@ -23,13 +23,13 @@ uplinks:
     max_fails: 100
 
 packages:
-  '@*/*':
+  "@*/*":
     # scoped packages
     access: $all
     publish: $all
     proxy: npmjs
 
-  '**':
+  "**":
     # allow all users (including non-authenticated users) to read and
     # publish all packages
     #
@@ -46,5 +46,5 @@ packages:
 
 # log settings
 logs:
-  - {type: stdout, format: pretty, level: http}
+  - { type: stdout, format: pretty, level: http }
   #- {type: file, path: verdaccio.log, level: info}
