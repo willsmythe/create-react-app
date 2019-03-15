@@ -17,9 +17,9 @@ steps:
     displayName: 'Install latest Yarn'
 
   - bash: |
-      npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry
-      yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry --verbose
-      npm config set always-auth true
+      #npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry
+      #yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry --verbose
+      #npm config set always-auth true
       
       t=~/.npmrc
       cat $t
@@ -28,14 +28,14 @@ steps:
       fi;
       echo "##vso[task.setvariable variable=npmrc_path]$t"
 
-  - task: npmAuthenticate@0
-    inputs:
-      workingFile: $(npmrc_path)
+#  - task: npmAuthenticate@0
+#    inputs:
+#      workingFile: $(npmrc_path)
 
-  - bash: |
-      cat $(npmrc_path)
-      echo "-------------"
-      npm config list
+#  - bash: |
+#      cat $(npmrc_path)
+#      echo "-------------"
+#      npm config list
 
   - script: yarn --frozen-lockfile
     displayName: 'Install packages'
