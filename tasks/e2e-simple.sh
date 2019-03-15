@@ -106,8 +106,6 @@ tmp_registry_log=`mktemp`
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
 
-cat $tmp_registry_log
-
 # Set registry to local registry
 npm set registry "$custom_registry_url"
 yarn config set registry "$custom_registry_url"

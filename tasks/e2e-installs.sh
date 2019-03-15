@@ -96,11 +96,15 @@ yarn
 # First, publish the monorepo.
 # ******************************************************************************
 
+echo "artifacts token: ${ARTIFACTS_TOKEN}"
+
 # Start local registry
 tmp_registry_log=`mktemp`
 (cd && nohup npx verdaccio@3.8.2 -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
+
+cat $tmp_registry_log
 
 # Set registry to local registry
 npm set registry "$custom_registry_url"
