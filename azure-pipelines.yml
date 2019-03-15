@@ -65,6 +65,12 @@ jobs:
     - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-installs.sh
       displayName: 'Run tests'
+      continueOnError: true
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: '/home/vsts/work/_temp/verdaccio.log'
+        artifactName: 'verdaccio.log'
+      condition: always()
 
 - job: KitchenSink
   strategy:
