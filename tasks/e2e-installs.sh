@@ -97,6 +97,7 @@ yarn
 
 # Start local registry
 tmp_registry_log=`mktemp`
+echo "##vso[task.setvariable variable=verdaccio_log]${tmp_registry_log}"
 (cd && nohup npx verdaccio@3.8.2 -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
