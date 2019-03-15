@@ -20,7 +20,9 @@ auth:
 uplinks:
   npmjs:
     url: https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry/
-    max_fails: 10
+    max_fails: 20
+    timeout: 10s
+    maxage: 10m
     auth:
       type: bearer
       token_env: ARTIFACTS_TOKEN
@@ -49,5 +51,5 @@ packages:
 
 # log settings
 logs:
-  - { type: stdout, format: pretty, level: http }
+  - { type: stdout, format: pretty, level: warn }
   #- {type: file, path: verdaccio.log, level: info}
