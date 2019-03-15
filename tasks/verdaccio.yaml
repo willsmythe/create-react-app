@@ -49,5 +49,5 @@ packages:
 
 # log settings
 logs:
-  - { type: stdout, format: pretty, level: debug }
+  - { type: stdout, format: pretty, level: http }
   #- {type: file, path: verdaccio.log, level: info}

@@ -90,7 +90,7 @@ then
 fi
 
 # Bootstrap monorepo
-yarn --verbose
+yarn
 
 # ******************************************************************************
 # First, publish the monorepo.
@@ -112,6 +112,8 @@ yarn config set registry "$custom_registry_url"
 
 # Login so we can publish packages
 (cd && npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r "$custom_registry_url")
+
+cat $tmp_registry_log
 
 # Publish the monorepo
 git clean -df
