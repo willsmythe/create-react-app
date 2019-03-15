@@ -17,8 +17,6 @@ steps:
           t=$(echo $t | sed -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')
       fi;
       echo "##vso[task.setvariable variable=npmrc_path]$t"
-    env:
-      ARTIFACTS_TOKEN: $(System.AccessToken)      
 
   - task: npmAuthenticate@0
     inputs:
