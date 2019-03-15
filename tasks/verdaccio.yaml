@@ -23,7 +23,7 @@ uplinks:
     max_fails: 10
     auth:
       type: bearer
-      token_env: true
+      token_env: ARTIFACTS_TOKEN
 
 packages:
   "@*/*":
