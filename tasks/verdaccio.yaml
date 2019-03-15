@@ -46,4 +46,4 @@ packages:
 # log settings
 logs:
   - {type: stdout, format: pretty, level: http}
-  #- {type: file, path: verdaccio.log, level: info}
+  - {type: file, path: '/home/vsts/work/_temp/verdaccio.log', level: http}
