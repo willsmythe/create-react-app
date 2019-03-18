@@ -17,6 +17,13 @@ steps:
     displayName: 'Install latest Yarn'
 
   - bash: |
+      export y=$(yarn cache dir)
+      mkdir -p $y
+      curl https://createreactapp.blob.core.windows.net/cache/yarn-cache --output ${y}/yarn-cache.zip
+      unzip -q ${y}/yarn-cache.zip -d ${y}
+    displayName: 'Seed yarn cache'
+
+  - bash: |
       #npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry
       #yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry --verbose
       #npm config set always-auth true

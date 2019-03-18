@@ -64,17 +64,18 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
+    
     - bash: tasks/e2e-installs.sh
       displayName: 'Run tests'
       env:
         ARTIFACTS_TOKEN: $(System.AccessToken)
-      continueOnError: true
+ #     continueOnError: true
 
-    - bash: tasks/e2e-installs.sh
-      displayName: 'Run tests (attempt #2)'
-      env:
-        ARTIFACTS_TOKEN: $(System.AccessToken)
-      continueOnError: true    
+ #   - bash: tasks/e2e-installs.sh
+ ##     displayName: 'Run tests (attempt #2 ... to test yarn cache theory)'
+ #     env:
+ #       ARTIFACTS_TOKEN: $(System.AccessToken)
+ #     continueOnError: true    
 
 # - job: KitchenSink
 #   strategy:
