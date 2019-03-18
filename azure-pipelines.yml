@@ -68,6 +68,13 @@ jobs:
       displayName: 'Run tests'
       env:
         ARTIFACTS_TOKEN: $(System.AccessToken)
+      continueOnError: true
+
+    - bash: tasks/e2e-installs.sh
+      displayName: 'Run tests (attempt #2)'
+      env:
+        ARTIFACTS_TOKEN: $(System.AccessToken)
+      continueOnError: true    
 
 # - job: KitchenSink
 #   strategy:
