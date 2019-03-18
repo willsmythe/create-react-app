@@ -17,10 +17,12 @@ steps:
     displayName: 'Install latest Yarn'
 
   - bash: |
+      set -x
       export y=$(yarn cache dir)
       mkdir -p $y
       curl https://createreactapp.blob.core.windows.net/cache/yarn-cache --output ${y}/yarn-cache.zip
       unzip -q ${y}/yarn-cache.zip -d ${y}
+      echo $(yarn cache list)
     displayName: 'Seed yarn cache'
 
   - bash: |
