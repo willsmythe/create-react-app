@@ -21,6 +21,7 @@ uplinks:
   npmjs:
     url: https://registry.npmjs.org/
     max_fails: 100
+    cache: false
   #aza:
   #  url: https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry/
   #  max_fails: 999
