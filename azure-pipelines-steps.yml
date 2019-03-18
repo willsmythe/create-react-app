@@ -22,6 +22,7 @@ steps:
       mkdir -p $y
       curl https://createreactapp.blob.core.windows.net/cache/yarn-cache --output ${y}/yarn-cache.zip
       unzip -q ${y}/yarn-cache.zip -d ${y}/..
+      rm ${y}/yarn-cache.zip
       echo $(yarn cache list)
     displayName: 'Seed yarn cache'
 
