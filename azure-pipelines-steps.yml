@@ -32,6 +32,8 @@ steps:
       #npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry
       #yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry --verbose
       #npm config set always-auth true
+
+      npm config list
       
       t=~/.npmrc
       cat $t
