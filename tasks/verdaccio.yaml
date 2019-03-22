@@ -54,8 +54,8 @@ packages:
 
 # log settings
 logs:
-  - { type: stdout, format: pretty, level: debug }
-  - { type: file, path: ./verdaccio.log, level: http }
+  - { type: stdout, format: json, level: http }
+ # - { type: file, path: ./verdaccio.log, level: http }
 
 server:
   keepAliveTimeout: 30
