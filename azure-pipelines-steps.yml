@@ -23,9 +23,10 @@ steps:
       #curl https://createreactapp.blob.core.windows.net/cache/yarn-cache --output ${y}/yarn-cache.zip
       #unzip -q ${y}/yarn-cache.zip -d ${y}/..
       #rm ${y}/yarn-cache.zip
-      npm config set maxSockets 1
-      echo $(yarn cache list)
+      #npm config set maxSockets 1
+      #echo $(yarn cache list)
     displayName: 'Seed yarn cache'
+    continueOnError: true
 
   - bash: |
       #npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry

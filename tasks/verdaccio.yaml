@@ -7,7 +7,7 @@
 #
 
 # path to a directory with all packages
-storage: /d/st
+storage: ../../st
 
 auth:
   htpasswd:
@@ -54,7 +54,7 @@ packages:
 # log settings
 logs:
   - { type: stdout, format: pretty, level: http }
-  - { type: file, path: '/d/l/verdaccio.log', level: http }
+  - { type: file, format: pretty, path: ./verdaccio.log, level: http }
 
 server:
   keepAliveTimeout: 30

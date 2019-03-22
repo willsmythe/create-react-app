@@ -64,11 +64,6 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
-
-    - bash: |
-        mkdir -p /d/l
-        mkdir -p /d/st
-      displayName: Create directories
     
     - bash: tasks/e2e-installs.sh
       displayName: 'Run tests'
@@ -78,7 +73,7 @@ jobs:
 
     - task: PublishBuildArtifacts@1
       inputs:
-        pathtoPublish: '/d/l/verdaccio.log' 
+        pathtoPublish: '$(Build.SourcesDirectory)/verdaccio.log' 
         artifactName: 'logs' 
         #publishLocation: 'Container' # Options: container, filePath
         #targetPath: # Required when publishLocation == FilePath
