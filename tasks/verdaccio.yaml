@@ -7,7 +7,7 @@
 #
 
 # path to a directory with all packages
-storage: ./storage
+storage: /d/st
 
 auth:
   htpasswd:
@@ -20,8 +20,8 @@ auth:
 uplinks:
   npmjs:
     url: https://registry.npmjs.org/
-    max_fails: 100
-    cache: false
+    max_fails: 999
+    #cache: false
   #aza:
   #  url: https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry/
   #  max_fails: 999
@@ -54,7 +54,7 @@ packages:
 # log settings
 logs:
   - { type: stdout, format: pretty, level: http }
- # - { type: file, path: verdaccio.log, level: info }
+  - { type: file, path: '/d/l/verdaccio.log', level: http }
 
 server:
-  keepAliveTimeout: 0
+  keepAliveTimeout: 30
