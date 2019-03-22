@@ -64,6 +64,11 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
+
+    - bash: |
+        mkdir -p /d/l
+        mkdir -p /d/st
+      displayName: Create directories
     
     - bash: tasks/e2e-installs.sh
       displayName: 'Run tests'
