@@ -3,9 +3,12 @@
 #
 
 steps:
-  - script: git config --global core.autocrlf false    
+  - script: git config --global core.autocrlf false
+    displayName: 'Preserve LF endings on clone (Windows)'
+    condition: eq(variables['Agent.OS'], 'Windows_NT')
+
   - checkout: self
-  
+
   - task: NodeTool@0
     inputs:
       versionSpec: $(NODE_VERSION)
@@ -13,7 +16,7 @@ steps:
 
   - bash: |
       yarn config set cache-folder $(Build.SourcesDirectory)/yarn-cache
-    displayName: Change Yarn cache directory (Windows only)
+    displayName: Change Yarn cache directory (Windows)
     condition: eq(variables['Agent.OS'], 'Windows_NT')
 
   - script: yarn --frozen-lockfile
