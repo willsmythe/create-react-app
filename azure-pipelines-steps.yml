@@ -3,8 +3,11 @@
 #
 
 steps:
-  - script: git config core.autocrlf false && git reset HEAD
-    displayName: 'Ensure LF line endings'
+  - script: git config --global core.autocrlf false
+    displayName: 'Ensure LF line endings (Windows only)'
+    condition: eq(variables['Agent.OS'], 'Windows_NT')
+
+  - self: checkout
 
   - task: NodeTool@0
     inputs:
