@@ -9,6 +9,7 @@ trigger:
 variables:
   CI: true
   VSTS_OVERWRITE_TEMP: True
+  NODE_VERSION: 10.x
 
 jobs:
 - job: Simple
@@ -17,20 +18,17 @@ jobs:
       LinuxNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'ubuntu-16.04'
-      LinuxNode10:
-        NODE_VERSION: 10.x
+      LinuxNode10:    
         VM_IMAGE: 'ubuntu-16.04'
       MacNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'macOS-10.13'
       MacNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'macOS-10.13'
       WindowsNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'vs2017-win2016'
       WindowsNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
@@ -46,22 +44,21 @@ jobs:
         NODE_VERSION: 8.x
         VM_IMAGE: 'ubuntu-16.04'
       LinuxNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'ubuntu-16.04'
       MacNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'macOS-10.13'
       MacNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'macOS-10.13'
       WindowsNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'vs2017-win2016'
       WindowsNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
+  variables:
+    YARN_CACHE_FOLDER: $(Build.SourcesDirectory)/../yarn-cache
   steps:
     - template: azure-pipelines-steps.yml    
     - bash: tasks/e2e-installs.sh
@@ -74,19 +71,16 @@ jobs:
         NODE_VERSION: 8.x
         VM_IMAGE: 'ubuntu-16.04'
       LinuxNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'ubuntu-16.04'
       MacNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'macOS-10.13'
       MacNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'macOS-10.13'
       WindowsNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'vs2017-win2016'
       WindowsNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
@@ -102,19 +96,16 @@ jobs:
         NODE_VERSION: 8.x
         VM_IMAGE: 'ubuntu-16.04'
       LinuxNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'ubuntu-16.04'
       MacNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'macOS-10.13'
       MacNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'macOS-10.13'
       WindowsNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'vs2017-win2016'
       WindowsNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
@@ -135,17 +126,12 @@ jobs:
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
-    - script: git config core.autocrlf false && git reset HEAD        
-      displayName: 'Ensure LF line endings'
-
     - task: NodeTool@0
       inputs:
         versionSpec: 6.x
       displayName: 'Install Node.js'
-
     - script: npm install
       displayName: 'Install packages'
-
     - bash: tasks/e2e-old-node.sh
       displayName: 'Run tests'
 
@@ -156,19 +142,16 @@ jobs:
         NODE_VERSION: 8.x
         VM_IMAGE: 'ubuntu-16.04'
       LinuxNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'ubuntu-16.04'
       MacNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'macOS-10.13'
       MacNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'macOS-10.13'
       WindowsNode8:
         NODE_VERSION: 8.x
         VM_IMAGE: 'vs2017-win2016'
       WindowsNode10:
-        NODE_VERSION: 10.x
         VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)

@@ -11,10 +11,5 @@ steps:
       versionSpec: $(NODE_VERSION)
     displayName: 'Install Node.js'
 
-  - bash: |
-      yarn config set cache-folder $(Build.SourcesDirectory)/yarn-cache
-    displayName: Change Yarn cache directory (Windows)
-    condition: eq(variables['Agent.OS'], 'Windows_NT')
-
   - script: yarn --frozen-lockfile
     displayName: 'Install packages'
