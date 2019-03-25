@@ -100,7 +100,7 @@ echo "artifacts token: ${ARTIFACTS_TOKEN}"
 
 # Start local registry
 tmp_registry_log=`mktemp`
-(cd && nohup npx https://createreactapp.blob.core.windows.net/lib/verdaccio-4.0.0-alpha.5.tgz -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
+(cd && nohup npx https://createreactapp.blob.core.windows.net/lib/verdaccio-4.0.0-alpha.6.tgz -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
 
@@ -289,6 +289,8 @@ yarn start --smoke-test
 cd "$temp_app_path"
 npx create-react-app test-app-pnp --use-pnp
 cd test-app-pnp
+pwd
+ls -la
 ! exists node_modules
 exists .pnp.js
 yarn start --smoke-test
