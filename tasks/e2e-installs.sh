@@ -100,7 +100,7 @@ echo "artifacts token: ${ARTIFACTS_TOKEN}"
 
 # Start local registry
 tmp_registry_log=`mktemp`
-(cd && nohup npx verdaccio@3.11.6 -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
+(cd && nohup npx https://createreactapp.blob.core.windows.net/lib/verdaccio-4.0.0-alpha.5.tgz -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
 

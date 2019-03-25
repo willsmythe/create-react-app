@@ -19,10 +19,10 @@ auth:
 # a list of other known repositories we can talk to
 uplinks:
   npmjs:
-    url: http://registry.npmjs.org/
-    max_fails: 999
-    maxage: 30m
-    #cache: false
+    url: https://registry.npmjs.org/
+    max_fails: 100
+    timeout: 45s
+
   #aza:
   #  url: https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry/
   #  max_fails: 999
@@ -56,6 +56,3 @@ packages:
 logs:
   - { type: stdout, format: json, level: http }
  # - { type: file, path: ./verdaccio.log, level: http }
-
-server:
-  keepAliveTimeout: 30

@@ -42,26 +42,26 @@ jobs:
 - job: Installs
   strategy:
     matrix:
-      # LinuxNode8:
-      #   NODE_VERSION: 8.x
-      #   VM_IMAGE: 'ubuntu-16.04'
-      # LinuxNode10:
-      #   NODE_VERSION: 10.x
-      #   VM_IMAGE: 'ubuntu-16.04'
-      # MacNode8:
-      #   NODE_VERSION: 8.x
-      #   VM_IMAGE: 'macOS-10.13'
-      # MacNode10:
-      #   NODE_VERSION: 10.x
-      #   VM_IMAGE: 'macOS-10.13'
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
       WindowsNode8:
         NODE_VERSION: 8.x
-        #VM_IMAGE: 'vs2017-win2016'
+        VM_IMAGE: 'vs2017-win2016'
       WindowsNode10:
         NODE_VERSION: 10.x
-        #VM_IMAGE: 'vs2017-win2016'
-  #pool: 
-  #  vmImage: $(VM_IMAGE)
+        VM_IMAGE: 'vs2017-win2016'
+  pool: 
+    vmImage: $(VM_IMAGE)
   steps:
     - template: azure-pipelines-steps.yml
     
