@@ -130,8 +130,6 @@ jobs:
       inputs:
         versionSpec: 6.x
       displayName: 'Install Node.js'
-    - script: npm install
-      displayName: 'Install packages'
     - bash: tasks/e2e-old-node.sh
       displayName: 'Run tests'
 

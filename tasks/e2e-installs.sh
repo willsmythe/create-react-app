@@ -86,11 +86,10 @@ set -x
 cd ..
 root_path=$PWD
 
-#FIXME
-#if hash npm 2>/dev/null
-#then
-#  npm i -g npm@latest
-#fi
+if hash npm 2>/dev/null
+then
+  npm i -g npm@latest
+fi
 
 # Bootstrap monorepo
 yarn
@@ -280,8 +279,6 @@ yarn start --smoke-test
 cd "$temp_app_path"
 npx create-react-app test-app-pnp --use-pnp
 cd test-app-pnp
-pwd
-ls -la
 ! exists node_modules
 exists .pnp.js
 yarn start --smoke-test
