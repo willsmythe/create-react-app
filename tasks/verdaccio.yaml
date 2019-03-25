@@ -7,7 +7,7 @@
 #
 
 # path to a directory with all packages
-storage: ../../st
+storage: ./storage
 
 auth:
   htpasswd:
@@ -20,15 +20,11 @@ auth:
 uplinks:
   npmjs:
     url: https://registry.npmjs.org/
-    max_fails: 100
-    timeout: 45s
-
-  #aza:
-  #  url: https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry/
-  #  max_fails: 999
-  #  auth:
-  #    type: bearer
-  #    token_env: ARTIFACTS_TOKEN
+    max_fails: 20
+    httpAgentOptions:
+      keepAlive: true
+      maxSockets: 40
+      maxFreeSockets: 10
 
 packages:
   "@*/*":

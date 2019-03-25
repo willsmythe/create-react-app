@@ -15,16 +15,18 @@ cd "$(dirname "$0")"
 # CLI and app temporary locations
 # http://unix.stackexchange.com/a/84980
 temp_app_path=`mktemp -d 2>/dev/null || mktemp -d -t 'temp_app_path'`
-custom_registry_url=http://localhost:4873
-original_npm_registry_url=`npm get registry`
-original_yarn_registry_url=`yarn config get registry`
+
+echo $(pwd)
+
+# Load Verdaccio-related functions
+source ./verdaccio.sh
 
 function cleanup {
   echo 'Cleaning up.'
   cd "$root_path"
   rm -rf "$temp_app_path"
-  npm set registry "$original_npm_registry_url"
-  yarn config set registry "$original_yarn_registry_url"
+  # Restore the original NPM and Yarn registry URLs
+  restoreRegistryUrls
 }
 
 # Error messages are redirected to stderr
@@ -84,10 +86,11 @@ set -x
 cd ..
 root_path=$PWD
 
-if hash npm 2>/dev/null
-then
-  npm i -g npm@latest
-fi
+#FIXME
+#if hash npm 2>/dev/null
+#then
+#  npm i -g npm@latest
+#fi
 
 # Bootstrap monorepo
 yarn
@@ -96,20 +99,8 @@ yarn
 # First, publish the monorepo.
 # ******************************************************************************
 
-echo "artifacts token: ${ARTIFACTS_TOKEN}"
-
-# Start local registry
-tmp_registry_log=`mktemp`
-(cd && nohup npx https://createreactapp.blob.core.windows.net/lib/verdaccio-4.0.0-alpha.6.tgz -c "$root_path"/tasks/verdaccio.yaml &>$tmp_registry_log &)
-# Wait for `verdaccio` to boot
-grep -q 'http address' <(tail -f $tmp_registry_log)
-
-# Set registry to local registry
-npm set registry "$custom_registry_url"
-yarn config set registry "$custom_registry_url"
-
-# Login so we can publish packages
-(cd && npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r "$custom_registry_url")
+# Start the local NPM registry
+startVerdaccio "$root_path"/tasks/verdaccio.yaml
 
 # Publish the monorepo
 git clean -df

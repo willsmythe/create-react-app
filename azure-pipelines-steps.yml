@@ -13,42 +13,8 @@ steps:
 
   - bash: |
       yarn config set cache-folder $(Build.SourcesDirectory)/yarn-cache
-    displayName: Set Yarn cache directory (needed for PNP on Windows)
-
-  - bash: |
-      #set -x
-      #export y=$(yarn cache dir)
-      #mkdir -p $y
-      #curl https://createreactapp.blob.core.windows.net/cache/yarn-cache --output ${y}/yarn-cache.zip
-      #unzip -q ${y}/yarn-cache.zip -d ${y}/..
-      #rm ${y}/yarn-cache.zip
-      #npm config set maxSockets 1
-      #echo $(yarn cache list)
-    displayName: 'Seed yarn cache'
-    continueOnError: true
-
-  - bash: |
-      #npm config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry
-      #yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/create-react-app/npm/registry --verbose
-      #npm config set always-auth true
-
-      npm config list
-      
-      t=~/.npmrc
-      cat $t
-      if [ "$OS" = "Windows_NT" ]; then
-          t=$(echo $t | sed -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')
-      fi;
-      echo "##vso[task.setvariable variable=npmrc_path]$t"
-
-#  - task: npmAuthenticate@0
-#    inputs:
-#      workingFile: $(npmrc_path)
-
-#  - bash: |
-#      cat $(npmrc_path)
-#      echo "-------------"
-#      npm config list
+    displayName: Change Yarn cache directory (Windows only)
+    condition: eq(variables['Agent.OS'], 'Windows_NT')
 
   - script: yarn --frozen-lockfile
     displayName: 'Install packages'

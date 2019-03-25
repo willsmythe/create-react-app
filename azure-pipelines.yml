@@ -11,33 +11,33 @@ variables:
   VSTS_OVERWRITE_TEMP: True
 
 jobs:
-# - job: Simple
-#   strategy:
-#     matrix:
-#       LinuxNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       LinuxNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       MacNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'macOS-10.13'
-#       MacNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'macOS-10.13'
-#       WindowsNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'vs2017-win2016'
-#       WindowsNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'vs2017-win2016'
-#   pool: 
-#     vmImage: $(VM_IMAGE)
-#   steps:
-#     - template: azure-pipelines-steps.yml
-#     - bash: tasks/e2e-simple.sh
-#       displayName: 'Run tests'
+- job: Simple
+  strategy:
+    matrix:
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
+  pool: 
+    vmImage: $(VM_IMAGE)
+  steps:
+    - template: azure-pipelines-steps.yml
+    - bash: tasks/e2e-simple.sh
+      displayName: 'Run tests'
 
 - job: Installs
   strategy:
@@ -63,139 +63,118 @@ jobs:
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
-    - template: azure-pipelines-steps.yml
-    
+    - template: azure-pipelines-steps.yml    
     - bash: tasks/e2e-installs.sh
       displayName: 'Run tests'
-      env:
-        ARTIFACTS_TOKEN: $(System.AccessToken)
-      continueOnError: true
 
-  #  - task: PublishBuildArtifacts@1
-  #    inputs:
-  ##      pathtoPublish: '$(Build.SourcesDirectory)/verdaccio.log' 
-  #      artifactName: 'logs' 
-        #publishLocation: 'Container' # Options: container, filePath
-        #targetPath: # Required when publishLocation == FilePath
-        #parallel: false # Optional
-        #parallelCount: # Optional
-   #   condition: always()
-   #   continueOnError: true
-        
- #   - bash: tasks/e2e-installs.sh
- ##     displayName: 'Run tests (attempt #2 ... to test yarn cache theory)'
- #     env:
- #       ARTIFACTS_TOKEN: $(System.AccessToken)
- #     continueOnError: true    
+- job: KitchenSink
+  strategy:
+    matrix:
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
+  pool: 
+    vmImage: $(VM_IMAGE)
+  steps:
+    - template: azure-pipelines-steps.yml
+    - bash: tasks/e2e-kitchensink.sh
+      displayName: 'Run tests'
 
-# - job: KitchenSink
-#   strategy:
-#     matrix:
-#       LinuxNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       LinuxNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       MacNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'macOS-10.13'
-#       MacNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'macOS-10.13'
-#       WindowsNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'vs2017-win2016'
-#       WindowsNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'vs2017-win2016'
-#   pool: 
-#     vmImage: $(VM_IMAGE)
-#   steps:
-#     - template: azure-pipelines-steps.yml
-#     - bash: tasks/e2e-kitchensink.sh
-#       displayName: 'Run tests'
+- job: KitchenSinkEject
+  strategy:
+    matrix:
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
+  pool: 
+    vmImage: $(VM_IMAGE)
+  steps:
+    - template: azure-pipelines-steps.yml
+    - bash: tasks/e2e-kitchensink-eject.sh
+      displayName: 'Run tests'
 
-# - job: KitchenSinkEject
-#   strategy:
-#     matrix:
-#       LinuxNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       LinuxNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       MacNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'macOS-10.13'
-#       MacNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'macOS-10.13'
-#       WindowsNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'vs2017-win2016'
-#       WindowsNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'vs2017-win2016'
-#   pool: 
-#     vmImage: $(VM_IMAGE)
-#   steps:
-#     - template: azure-pipelines-steps.yml
-#     - bash: tasks/e2e-kitchensink-eject.sh
-#       displayName: 'Run tests'
+- job: OldNode
+  strategy:
+    matrix:
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
+  pool: 
+    vmImage: $(VM_IMAGE)
+  steps:
+    - template: azure-pipelines-steps.yml
+    - bash: tasks/e2e-old-node.sh
+      displayName: 'Run tests'
 
-# - job: OldNode
-#   strategy:
-#     matrix:
-#       LinuxNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       LinuxNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       MacNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'macOS-10.13'
-#       MacNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'macOS-10.13'
-#       WindowsNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'vs2017-win2016'
-#       WindowsNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'vs2017-win2016'
-#   pool: 
-#     vmImage: $(VM_IMAGE)
-#   steps:
-#     - template: azure-pipelines-steps.yml
-#     - bash: tasks/e2e-old-node.sh
-#       displayName: 'Run tests'
-
-# - job: Behavior
-#   strategy:
-#     matrix:
-#       LinuxNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       LinuxNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'ubuntu-16.04'
-#       MacNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'macOS-10.13'
-#       MacNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'macOS-10.13'
-#       WindowsNode8:
-#         NODE_VERSION: 8.x
-#         VM_IMAGE: 'vs2017-win2016'
-#       WindowsNode10:
-#         NODE_VERSION: 10.x
-#         VM_IMAGE: 'vs2017-win2016'
-#   pool: 
-#     vmImage: $(VM_IMAGE)
-#   steps:
-#     - template: azure-pipelines-steps.yml
-#     - bash: tasks/e2e-behavior.sh
-#       displayName: 'Run tests'
+- job: Behavior
+  strategy:
+    matrix:
+      LinuxNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'ubuntu-16.04'
+      LinuxNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'ubuntu-16.04'
+      MacNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'macOS-10.13'
+      MacNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'macOS-10.13'
+      WindowsNode8:
+        NODE_VERSION: 8.x
+        VM_IMAGE: 'vs2017-win2016'
+      WindowsNode10:
+        NODE_VERSION: 10.x
+        VM_IMAGE: 'vs2017-win2016'
+  pool: 
+    vmImage: $(VM_IMAGE)
+  steps:
+    - template: azure-pipelines-steps.yml
+    - bash: tasks/e2e-behavior.sh
+      displayName: 'Run tests'
