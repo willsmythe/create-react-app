@@ -12,9 +12,8 @@ steps:
     displayName: 'Install Node.js'
 
   - bash: |
-      curl -o- -L https://yarnpkg.com/install.sh | bash -s
-      echo "##vso[task.prependpath]$HOME/.yarn/bin"
-    displayName: 'Install latest Yarn'
+      yarn config set cache-folder $(Build.SourcesDirectory)/yarn-cache
+    displayName: Set Yarn cache directory (needed for PNP on Windows)
 
   - bash: |
       #set -x
