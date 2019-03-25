@@ -3,11 +3,8 @@
 #
 
 steps:
-  - script: git config --global core.autocrlf false
-    displayName: 'Preserve LF endings on clone (Windows)'
-    condition: eq(variables['Agent.OS'], 'Windows_NT')
-
-  - checkout: self
+  - script: git config core.autocrlf false && git reset HEAD
+    displayName: 'Ensure LF line endings'
 
   - task: NodeTool@0
     inputs:

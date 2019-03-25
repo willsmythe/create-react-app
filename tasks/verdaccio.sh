@@ -20,6 +20,8 @@ function startVerdaccio {
 }
 
 function restoreRegistryUrls {
+  cat $tmp_registry_log
+  
   npm set registry "$original_npm_registry_url"
   yarn config set registry "$original_yarn_registry_url"
 }

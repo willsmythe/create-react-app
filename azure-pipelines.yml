@@ -127,18 +127,25 @@ jobs:
   strategy:
     matrix:
       LinuxNode6:
-        NODE_VERSION: 6.x
         VM_IMAGE: 'ubuntu-16.04'
       MacNode6:
-        NODE_VERSION: 6.x
         VM_IMAGE: 'macOS-10.13'
       WindowsNode6:
-        NODE_VERSION: 6.x
         VM_IMAGE: 'vs2017-win2016'
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
-    - template: azure-pipelines-steps.yml
+    - script: git config core.autocrlf false && git reset HEAD        
+      displayName: 'Ensure LF line endings'
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: 6.x
+      displayName: 'Install Node.js'
+
+    - script: npm install
+      displayName: 'Install packages'
+
     - bash: tasks/e2e-old-node.sh
       displayName: 'Run tests'
 
