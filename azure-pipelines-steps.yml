@@ -7,7 +7,7 @@ steps:
     displayName: 'Ensure LF line endings (Windows only)'
     condition: eq(variables['Agent.OS'], 'Windows_NT')
 
-  - self: checkout
+  - checkout: self
 
   - task: NodeTool@0
     inputs:
