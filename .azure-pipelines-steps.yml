@@ -3,9 +3,11 @@
 #
 
 steps:
-  - script: git config --global core.autocrlf false
-    displayName: 'Ensure LF line endings (Windows only)'
-    condition: eq(variables['Agent.OS'], 'Windows_NT')
+  - script: |
+      git config --global core.autocrlf false
+      git config --global user.name "Create React App"
+      git config --global user.email "cra@email.com"
+    displayName: 'Initialize Git config settings'
 
   - checkout: self
 
