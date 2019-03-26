@@ -29,6 +29,9 @@ jobs:
     - bash: tasks/e2e-simple.sh
       displayName: 'Run tests'
 
+# ******************************************************************************
+# Installs test suite
+# ******************************************************************************
 - job: Installs
   strategy:
     matrix:
@@ -69,7 +72,7 @@ jobs:
 # ******************************************************************************
 # Kitchensink Eject test suite
 # ******************************************************************************
-- job: KitchenSinkEject
+- job: KitchensinkEject
   strategy:
     matrix:
       LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
@@ -83,6 +86,25 @@ jobs:
   steps:
     - template: .azure-pipelines-steps.yml
     - bash: tasks/e2e-kitchensink-eject.sh
+      displayName: 'Run tests'
+
+# ******************************************************************************
+# Behavior test suite
+# ******************************************************************************
+- job: Behavior
+  strategy:
+    matrix:
+      LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
+      LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
+      MacNode8:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
+      MacNode10:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
+      WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
+      WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
+  pool: 
+    vmImage: $(VM_IMAGE)
+  steps:
+    - template: .azure-pipelines-steps.yml
+    - bash: tasks/e2e-behavior.sh
       displayName: 'Run tests'
 
 # ******************************************************************************
@@ -105,23 +127,4 @@ jobs:
         versionSpec: 6.x
       displayName: 'Install Node.js'
     - bash: tasks/e2e-old-node.sh
-      displayName: 'Run tests'
-
-# ******************************************************************************
-# Behavior test suite
-# ******************************************************************************
-- job: Behavior
-  strategy:
-    matrix:
-      LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
-      LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
-      MacNode8:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
-      MacNode10:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
-      WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
-      WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
-  pool: 
-    vmImage: $(VM_IMAGE)
-  steps:
-    - template: .azure-pipelines-steps.yml
-    - bash: tasks/e2e-behavior.sh
       displayName: 'Run tests'
