@@ -121,6 +121,10 @@ echo yes | npm run eject
 # Link to test module
 npm link "$temp_module_path/node_modules/test-integrity"
 
+echo "$(ls -la)"
+echo "$(cat package.json)"
+echo "$(cat yarn.lock)"
+
 # Test the build
 REACT_APP_SHELL_ENV_MESSAGE=fromtheshell \
   NODE_PATH=src \
