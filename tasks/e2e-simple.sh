@@ -93,10 +93,10 @@ if [ "$EXPECTED" != "$ACTUAL" ]; then
   exit 1
 fi
 
-if hash npm 2>/dev/null
-then
-  npm i -g npm@latest
-fi
+#if hash npm 2>/dev/null
+#then
+  #npm i -g npm@latest
+#fi
 
 # Bootstrap monorepo
 yarn
@@ -246,6 +246,9 @@ function verify_module_scope {
 # Enter the app directory
 cd test-app
 
+echo "current dir: $(pwd)"
+echo "$(ls -la)"
+
 # Test the build
 yarn build
 # Check for expected output
@@ -275,6 +278,9 @@ verify_module_scope
 
 # Eject...
 echo yes | npm run eject
+
+echo "current dir: $(pwd)"
+echo "$(ls -la)"
 
 # Test ejected files were staged
 test -n "$(git diff --staged --name-only)"
