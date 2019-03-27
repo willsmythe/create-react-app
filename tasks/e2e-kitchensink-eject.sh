@@ -121,9 +121,8 @@ echo yes | npm run eject
 # Link to test module
 npm link "$temp_module_path/node_modules/test-integrity"
 
-echo "$(ls -la)"
-echo "$(cat package.json)"
-echo "$(cat yarn.lock)"
+# Temporary workaround for https://github.com/facebook/create-react-app/issues/6099
+yarn add @babel/plugin-transform-react-jsx
 
 # Test the build
 REACT_APP_SHELL_ENV_MESSAGE=fromtheshell \
