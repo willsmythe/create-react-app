@@ -174,7 +174,8 @@ CI=true yarn test
 echo yes | npm run eject
 
 # Temporary workaround for https://github.com/facebook/create-react-app/issues/6099
-npm install @babel/plugin-transform-react-jsx
+rm yarn.lock
+yarn add @babel/plugin-transform-react-jsx
 
 # Ensure env file still exists
 exists src/react-app-env.d.ts
