@@ -20,7 +20,8 @@ auth:
 uplinks:
   npmjs:
     url: https://registry.npmjs.org/
-    max_fails: 20
+    max_fails: 40
+    timeout: 60s
     agent_options:
       keepAlive: true
       maxSockets: 40
