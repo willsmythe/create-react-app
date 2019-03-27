@@ -21,7 +21,7 @@ uplinks:
   npmjs:
     url: https://registry.npmjs.org/
     max_fails: 20
-    httpAgentOptions:
+    agent_options:
       keepAlive: true
       maxSockets: 40
       maxFreeSockets: 10
@@ -52,4 +52,3 @@ packages:
 logs:
   - {type: stdout, format: pretty, level: http}
   #- {type: file, path: verdaccio.log, level: info}
-  

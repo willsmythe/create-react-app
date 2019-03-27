@@ -7,7 +7,7 @@ original_yarn_registry_url=`yarn config get registry`
 function startVerdaccio {
   # Start local registry
   tmp_registry_log=`mktemp`
-  (cd && nohup npx https://createreactapp.blob.core.windows.net/lib/verdaccio-4.0.0-alpha.5.tgz -c $1 &>$tmp_registry_log &)
+  (cd && nohup npx https://createreactapp.blob.core.windows.net/lib/verdaccio-4.0.0-alpha.7.tgz -c $1 &>$tmp_registry_log &)
   # Wait for `verdaccio` to boot
   grep -q 'http address' <(tail -f $tmp_registry_log)
 

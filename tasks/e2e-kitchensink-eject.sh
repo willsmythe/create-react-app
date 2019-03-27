@@ -118,11 +118,11 @@ npm link "$temp_module_path/node_modules/test-integrity"
 # Eject...
 echo yes | npm run eject
 
+# Temporary workaround for https://github.com/facebook/create-react-app/issues/6099
+npm install @babel/plugin-transform-react-jsx
+
 # Link to test module
 npm link "$temp_module_path/node_modules/test-integrity"
-
-# Temporary workaround for https://github.com/facebook/create-react-app/issues/6099
-yarn add @babel/plugin-transform-react-jsx
 
 # Test the build
 REACT_APP_SHELL_ENV_MESSAGE=fromtheshell \
