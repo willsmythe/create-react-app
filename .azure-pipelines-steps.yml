@@ -11,6 +11,9 @@ steps:
 
   - checkout: self
 
+  - bash: printenv | grep yarn
+    displayName: Show Yarn env variables
+
   - task: NodeTool@0
     inputs:
       versionSpec: $(NODE_VERSION)

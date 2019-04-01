@@ -8,6 +8,7 @@ trigger:
 variables:
   CI: true
   VSTS_OVERWRITE_TEMP: True
+  YARN_CACHE_FOLDER: $(Build.SourcesDirectory)/../yarn-cache
 
 # ******************************************************************************
 # Simple test suite
@@ -43,8 +44,6 @@ jobs:
       WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
   pool: 
     vmImage: $(VM_IMAGE)
-  variables:
-    YARN_CACHE_FOLDER: $(Build.SourcesDirectory)/../yarn-cache
   steps:
     - template: .azure-pipelines-steps.yml    
     - bash: tasks/e2e-installs.sh
