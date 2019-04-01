@@ -12,13 +12,12 @@ steps:
   - checkout: self
 
   - bash: |
-      set -x
       export y=$(yarn cache dir)
       mkdir -p $y
-      curl https://createreactapp.blob.core.windows.net/cache/yarn-cache --output ${y}/yarn-cache.zip
-      unzip -q ${y}/yarn-cache.zip -d ${y}/..
-      rm ${y}/yarn-cache.zip
-      echo $(yarn cache list)
+      cd ${y}/..
+      curl https://createreactapp.blob.core.windows.net/cache/yarn-cache-tar-gz | tar -xz
+      echo $(yarn cache list | wc --lines)
+      ls -la ${y}/npm-opn-5.5.0-fc7164fab56d235904c51c3b27da6758ca3b9bfc/node_modules/opn
     displayName: 'Seed yarn cache'
 
   - task: NodeTool@0
