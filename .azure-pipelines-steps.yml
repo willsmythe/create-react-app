@@ -20,7 +20,9 @@ steps:
       echo $(yarn cache list | wc --lines)
       ls -la ${y}/npm-opn-5.5.0-fc7164fab56d235904c51c3b27da6758ca3b9bfc/node_modules/opn
 
-      echo "NPM cache: $(npm config get cache)"
+      export n=$(npm config get cache)
+      mkdir -p $n
+      echo "NPM cache: ${n}"
     displayName: 'Seed yarn cache'
 
   - task: NodeTool@0
