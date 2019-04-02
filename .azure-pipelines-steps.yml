@@ -21,13 +21,13 @@ steps:
       echo $(yarn cache list | wc --lines)
       ls -la ${y}/npm-opn-5.5.0-fc7164fab56d235904c51c3b27da6758ca3b9bfc/node_modules/opn
 
-      printenv
+      echo "$(printenv)"
 
-      n=$(npm config get cache)    
-      echo "Current NPM cache: ${n}"
-      n="$(mktemp -d)"
+      echo "Current NPM cache: $(npm config list)"
+      export n="$(Build.SourcesDirectory)/../npm-cache"
+      mkdir -p $n      
       npm config set cache $n
-      echo "New NPM cache: $(npm config get cache)"
+      echo "New NPM cache: $(npm config list)"
     displayName: 'Seed yarn cache'
 
   - task: NodeTool@0
