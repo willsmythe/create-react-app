@@ -10,7 +10,6 @@ steps:
     displayName: 'Initialize Git config settings'
 
   - checkout: self
-    fetchDepth: 2
   
   - bash: |
       export y=$(yarn cache dir)
