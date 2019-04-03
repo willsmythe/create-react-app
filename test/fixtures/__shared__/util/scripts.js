@@ -1,6 +1,5 @@
 const execa = require('execa');
 const getPort = require('get-port');
-const os = require('os');
 const stripAnsi = require('strip-ansi');
 const waitForLocalhost = require('wait-for-localhost');
 
@@ -18,27 +17,35 @@ function stripYarn(output) {
 
 function execaSafe(...args) {
   return execa(...args)
-    .then(({ stdout, stderr, ...rest }) => ({
-      fulfilled: true,
-      rejected: false,
-      stdout: stripYarn(stripAnsi(stdout)),
-      stderr: stripYarn(stripAnsi(stderr)),
-      ...rest,
-    }))
-    .catch(err => ({
-      fulfilled: false,
-      rejected: true,
-      reason: err,
-      stdout: '',
-      stderr: stripYarn(
-        stripAnsi(
-          err.message
-            .split('\n')
-            .slice(2)
-            .join('\n')
-        )
-      ),
-    }));
+    .then(({ stdout, stderr, ...rest }) => {
+      //console.log(`stdout: ${stdout}`);
+      //console.log(`stderr: ${stderr}`);
+
+      return {
+        fulfilled: true,
+        rejected: false,
+        stdout: stripYarn(stripAnsi(stdout)),
+        stderr: stripYarn(stripAnsi(stderr)),
+        ...rest,
+      };
+    })
+    .catch(err => {
+      console.log(`${err}`);
+      return {
+        fulfilled: false,
+        rejected: true,
+        reason: err,
+        stdout: '',
+        stderr: stripYarn(
+          stripAnsi(
+            err.message
+              .split('\n')
+              .slice(2)
+              .join('\n')
+          )
+        ),
+      };
+    });
 }
 
 module.exports = class ReactScripts {
