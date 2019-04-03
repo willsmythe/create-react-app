@@ -30,6 +30,8 @@ module.exports = class TestSetup {
     await fs.remove(path.resolve(this.testDirectory, 'test.partial.js'));
     await fs.remove(path.resolve(this.testDirectory, '.disable-pnp'));
 
+    console.log(`test dir: ${this.testDirectory}`);
+
     const packageJson = await fs.readJson(
       path.resolve(this.testDirectory, 'package.json')
     );
@@ -97,7 +99,7 @@ module.exports = class TestSetup {
   async teardown() {
     if (this.testDirectory != null) {
       try {
-        await fs.remove(this.testDirectory);
+        // await fs.remove(this.testDirectory);
       } catch (ex) {
         if (this.isLocal) {
           throw ex;
