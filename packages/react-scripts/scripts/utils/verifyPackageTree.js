@@ -11,6 +11,7 @@
 const chalk = require('react-dev-utils/chalk');
 const fs = require('fs');
 const path = require('path');
+const semver = require('semver');
 
 // We assume that having wrong versions of these
 // in the tree will likely break your setup.
@@ -74,7 +75,7 @@ function verifyPackageTree() {
         fs.readFileSync(maybeDepPackageJson, 'utf8')
       );
       const expectedVersion = expectedVersionsByDep[dep];
-      if (depPackageJson.version !== expectedVersion) {
+      if (!semver.satisfies(depPackageJson.version, expectedVersion)) {
         console.error(
           chalk.red(
             `\nThere might be a problem with the project dependency tree.\n` +
