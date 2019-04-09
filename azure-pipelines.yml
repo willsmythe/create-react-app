@@ -30,6 +30,17 @@ jobs:
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
+    - bash: |
+        echo $HOME
+      
+    - task: npmAuthenticate@0
+      continueOnError: true
+
+    - task: npmAuthenticate@0
+      inputs:
+        workingFile: $(HOME)/.npmrc
+      continueOnError: true  
+  
     - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-simple.sh
       displayName: 'Run tests'
