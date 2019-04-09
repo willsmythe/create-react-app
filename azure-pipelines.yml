@@ -39,10 +39,12 @@ jobs:
     - bash: |
         echo "NPM token: $NPM_TOKEN"
         custom_registry_url=https://pkgs.dev.azure.com/willsmythe/_packaging/aug8-test/npm/registry/
+        npm set always-auth true
         npm set registry "$custom_registry_url"
+        npm config list
         yarn config set registry "$custom_registry_url"
 
-        yarn
+        npm install
       env:
         NPM_TOKEN: $(System.AccessToken)
 
