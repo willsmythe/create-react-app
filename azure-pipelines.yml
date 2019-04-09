@@ -34,7 +34,7 @@ jobs:
         echo $HOME
         npm config list
         t=~/.npmrc
-        cat $t
+        touch $t
         echo "NPM CONFIG: ${t}"
       
     - task: npmAuthenticate@0
