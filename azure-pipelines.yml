@@ -36,14 +36,16 @@ jobs:
         t=~/.npmrc
         touch $t
         echo "NPM CONFIG: ${t}"
-      
-    - task: npmAuthenticate@0
-      continueOnError: true
 
     - task: npmAuthenticate@0
       inputs:
         workingFile: $(HOME)/.npmrc
       continueOnError: true  
+
+    - bash: |
+        echo "$(npm config list)"
+        echo "==="
+        echo "cat $(~/.npmrc)"
   
     - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-simple.sh
