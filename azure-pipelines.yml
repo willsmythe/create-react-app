@@ -31,23 +31,12 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
     - bash: |
-        echo $HOME
-        npm config list
-        t=$(Build.SourcesDirectory)/.npmrc
-        touch $t
-        chmod 777 $t
-        echo "##vso[task.setvariable variable=npmrc_path]$t"
-
-        echo "NPM CONFIG: ${t}"
-
-    - task: npmAuthenticate@0
-      inputs:
-        workingFile: $(Build.SourcesDirectory)/.npmrc
-      continueOnError: true  
+        npm config set //pkgs.dev.azure.com/willsmythe/_packaging/aug8-test2/npm/registry/:_authToken $ARTIFACTS_TOKEN
+        echo "$(npm config list)"
+      env:
+        ARTIFACTS_TOKEN: $(System.AccessToken)
 
     - bash: |
-        cp $(Build.SourcesDirectory)/.npmrc ~/.npmrc
-
         custom_registry_url=https://pkgs.dev.azure.com/willsmythe/_packaging/aug8-test/npm/registry/
         npm set registry "$custom_registry_url"
         yarn config set registry "$custom_registry_url"
