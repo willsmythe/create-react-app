@@ -42,10 +42,12 @@ jobs:
 
     - task: npmAuthenticate@0
       inputs:
-        workingFile: $(npmrc_path)
+        workingFile: $(Build.SourcesDirectory)/.npmrc
       continueOnError: true  
 
     - bash: |
+        cp $(Build.SourcesDirectory)/.npmrc ~/.npmrc
+
         custom_registry_url=https://pkgs.dev.azure.com/willsmythe/_packaging/aug8-test/npm/registry/
         npm set registry "$custom_registry_url"
         yarn config set registry "$custom_registry_url"
