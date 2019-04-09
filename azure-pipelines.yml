@@ -36,17 +36,19 @@ jobs:
         t=~/.npmrc
         touch $t
         chmod 777 $t
+        echo "##vso[task.setvariable variable=npmrc_path]$t"
+
         echo "NPM CONFIG: ${t}"
 
     - task: npmAuthenticate@0
       inputs:
-        workingFile: $(HOME)/.npmrc
+        workingFile: $(npmrc_path)
       continueOnError: true  
 
     - bash: |
         echo "$(npm config list)"
         echo "==="
-        echo "cat $(~/.npmrc)"
+        echo "$(cat ${npmrc_path})"
   
     - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-simple.sh
