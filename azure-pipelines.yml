@@ -45,9 +45,16 @@ jobs:
         workingFile: $(npmrc_path)
       continueOnError: true  
 
-    - template: azure-pipelines-steps.yml
-    - bash: tasks/e2e-simple.sh
-      displayName: 'Run tests'
+    - bash: |
+        custom_registry_url=https://pkgs.dev.azure.com/willsmythe/_packaging/aug8-test/npm/registry/
+        npm set registry "$custom_registry_url"
+        yarn config set registry "$custom_registry_url"
+
+        yarn
+
+#    - template: azure-pipelines-steps.yml
+#    - bash: tasks/e2e-simple.sh
+#      displayName: 'Run tests'
 
 # ******************************************************************************
 # Installs test suite
