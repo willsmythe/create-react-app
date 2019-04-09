@@ -48,7 +48,7 @@ jobs:
     - bash: |
         echo "$(npm config list)"
         echo "==="
-        echo "$(cat ${npmrc_path})"
+        echo "$(cat $npmrc_path)"
   
     - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-simple.sh

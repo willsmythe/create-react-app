@@ -9,7 +9,7 @@ steps:
       git config --global user.email "cra@email.com"
     displayName: 'Initialize Git config settings'
 
-  - checkout: self
+  #- checkout: self
 
   - task: NodeTool@0
     inputs:
