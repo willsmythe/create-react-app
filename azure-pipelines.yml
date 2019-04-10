@@ -110,6 +110,13 @@ jobs:
     - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-behavior.sh
       displayName: 'Run tests'
+    - script: |
+        echo C:
+        fsutil volume diskfree c:
+        echo D:
+        fsutil volume diskfree d:
+      displayName: Show free disk space (Windows only)
+      condition: and(always(), eq(variables['Agent.OS'], 'Windows_NT'))
 
 # ******************************************************************************
 # Old Node test suite
