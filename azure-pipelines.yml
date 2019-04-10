@@ -22,10 +22,10 @@ jobs:
 - job: Simple
   strategy:
     matrix:
-      LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
-      LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
-      MacNode8:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
-      MacNode10:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
+      #LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
+      #LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
+      #MacNode88:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
+      #MacNode810:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
       WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
       WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
   pool: 
@@ -41,10 +41,10 @@ jobs:
 - job: Installs
   strategy:
     matrix:
-      LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
-      LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
-      MacNode8:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
-      MacNode10:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
+      #LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
+      #LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
+      #MacNode88:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
+      #MacNode810:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
       WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
       WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
   pool: 
@@ -60,10 +60,10 @@ jobs:
 - job: Kitchensink
   strategy:
     matrix:
-      LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
-      LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
-      MacNode8:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
-      MacNode10:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
+      #LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
+      #LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
+      #MacNode88:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
+      #MacNode810:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
       WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
       WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
   pool: 
@@ -79,10 +79,10 @@ jobs:
 - job: KitchensinkEject
   strategy:
     matrix:
-      LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
-      LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
-      MacNode8:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
-      MacNode10:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
+      #LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
+      #LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
+      #MacNode88:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
+      #MacNode810:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
       WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
       WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
   pool: 
@@ -98,10 +98,10 @@ jobs:
 - job: Behavior
   strategy:
     matrix:
-      LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
-      LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
-      MacNode8:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
-      MacNode10:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
+      #LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
+      #LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
+      #MacNode88:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
+      #MacNode810:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
       WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
       WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
   pool: 
@@ -117,10 +117,10 @@ jobs:
 - job: OldNode
   strategy:
     matrix:
-      LinuxNode6:
-        VM_IMAGE: 'ubuntu-16.04'
-      MacNode6:
-        VM_IMAGE: 'macOS-10.13'
+      #LinuxNode6:
+      #  VM_IMAGE: 'ubuntu-16.04'
+      #MacNode86:
+      #  VM_IMAGE: 'macOS-10.13'
       WindowsNode6:
         VM_IMAGE: 'vs2017-win2016'
   pool: 
