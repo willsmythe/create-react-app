@@ -53,3 +53,7 @@ packages:
 logs:
   - {type: stdout, format: pretty, level: http}
   #- {type: file, path: verdaccio.log, level: info}
+
+# See https://github.com/verdaccio/verdaccio/issues/301
+server:
+  keepAliveTimeout: 0
