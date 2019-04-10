@@ -103,14 +103,14 @@ git clean -df
 ./tasks/publish.sh --yes --force-publish=* --skip-git --cd-version=prerelease --exact --npm-tag=latest
 
 echo "Create React App Version: "
-npx create-react-app --version
+npx create-react-app --version --verbose
 
 # ******************************************************************************
 # Test --scripts-version with a distribution tag
 # ******************************************************************************
 
 cd "$temp_app_path"
-npx create-react-app test-app-dist-tag --scripts-version=@latest
+npx create-react-app test-app-dist-tag --scripts-version=@latest --verbose
 cd test-app-dist-tag
 
 # Check corresponding scripts version is installed and no TypeScript is present.
@@ -125,7 +125,7 @@ checkDependencies
 # ******************************************************************************
 
 cd "$temp_app_path"
-npx create-react-app test-app-version-number --scripts-version=1.0.17
+npx create-react-app test-app-version-number --scripts-version=1.0.17 --verbose
 cd test-app-version-number
 
 # Check corresponding scripts version is installed.
@@ -138,7 +138,7 @@ checkDependencies
 # ******************************************************************************
 
 cd "$temp_app_path"
-npx create-react-app test-use-npm-flag --use-npm --scripts-version=1.0.17
+npx create-react-app test-use-npm-flag --use-npm --scripts-version=1.0.17 --verbose
 cd test-use-npm-flag
 
 # Check corresponding scripts version is installed.
@@ -152,7 +152,7 @@ checkDependencies
 # ******************************************************************************
 
 cd "$temp_app_path"
-npx create-react-app test-app-typescript --typescript
+npx create-react-app test-app-typescript --typescript --verbose
 cd test-app-typescript
 
 # Check corresponding template is installed.
@@ -190,7 +190,7 @@ CI=true yarn test
 # ******************************************************************************
 
 cd "$temp_app_path"
-npx create-react-app test-app-tarball-url --scripts-version=https://registry.npmjs.org/react-scripts/-/react-scripts-1.0.17.tgz
+npx create-react-app test-app-tarball-url --scripts-version=https://registry.npmjs.org/react-scripts/-/react-scripts-1.0.17.tgz --verbose
 cd test-app-tarball-url
 
 # Check corresponding scripts version is installed.
@@ -203,7 +203,7 @@ checkDependencies
 # ******************************************************************************
 
 cd "$temp_app_path"
-npx create-react-app test-app-fork --scripts-version=react-scripts-fork
+npx create-react-app test-app-fork --scripts-version=react-scripts-fork --verbose
 cd test-app-fork
 
 # Check corresponding scripts version is installed.
@@ -278,7 +278,7 @@ yarn start --smoke-test
 # Test when PnP is enabled
 # ******************************************************************************
 cd "$temp_app_path"
-npx create-react-app test-app-pnp --use-pnp
+npx create-react-app test-app-pnp --use-pnp --verbose
 cd test-app-pnp
 ! exists node_modules
 exists .pnp.js
