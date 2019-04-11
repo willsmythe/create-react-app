@@ -19,21 +19,11 @@ variables:
 # Simple test suite
 # ******************************************************************************
 jobs:
-- job: Simple
-  strategy:
-    matrix:
-      #LinuxNode8:    { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 8.x }
-      #LinuxNode10:   { VM_IMAGE: 'ubuntu-16.04',   NODE_VERSION: 10.x }
-      #MacNode88:      { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 8.x }
-      #MacNode810:     { VM_IMAGE: 'macOS-10.13',    NODE_VERSION: 10.x }
-      WindowsNode8:  { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 8.x }
-      WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
-  pool: 
-    vmImage: $(VM_IMAGE)
-  steps:
-    - template: azure-pipelines-steps.yml
-    - bash: tasks/e2e-simple.sh
-      displayName: 'Run tests'
+- template: azure-pipelines-job.yml
+  parameters:
+    name: Simple
+    testScript: tasks/e2e-simple.sh
+
 
 # ******************************************************************************
 # Installs test suite
@@ -50,7 +40,7 @@ jobs:
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
-    - template: azure-pipelines-steps.yml    
+   # - template: azure-pipelines-steps.yml    
     - bash: tasks/e2e-installs.sh
       displayName: 'Run tests'
 
@@ -69,7 +59,7 @@ jobs:
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
-    - template: azure-pipelines-steps.yml
+  #  - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-kitchensink.sh
       displayName: 'Run tests'
 
@@ -87,8 +77,10 @@ jobs:
       WindowsNode10: { VM_IMAGE: 'vs2017-win2016', NODE_VERSION: 10.x }
   pool: 
     vmImage: $(VM_IMAGE)
+  variables:
+    TEST_SCRIPT: tasks/e2e-kitchensink-eject.sh
   steps:
-    - template: azure-pipelines-steps.yml
+ #   - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-kitchensink-eject.sh
       displayName: 'Run tests'
 
@@ -107,7 +99,7 @@ jobs:
   pool: 
     vmImage: $(VM_IMAGE)
   steps:
-    - template: azure-pipelines-steps.yml
+ #   - template: azure-pipelines-steps.yml
     - bash: tasks/e2e-behavior.sh
       displayName: 'Run tests'
     - script: |

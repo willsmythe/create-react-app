@@ -70,12 +70,11 @@ module.exports = class ReactScripts {
       ),
     };
 
-    console.log(`startProcess ${startProcess.pid} on ${port}`);
-
     if (smoke) {
       return await execaSafe('yarnpkg', ['start', '--smoke-test'], options);
     }
     const startProcess = execa('yarnpkg', ['start'], options);
+    console.log(`startProcess ${startProcess.pid} on ${port}`);
     /*startProcess.stdout.on('data', data => {
       console.log(`startProcess ${startProcess.pid} on ${port}: ${data}`.trim());
     });
