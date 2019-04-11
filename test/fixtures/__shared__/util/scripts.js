@@ -42,7 +42,7 @@ function execaSafe(...args) {
 }
 
 function killProcess(proc) {
-  if (1 == 2 && process.platform === 'win32') {
+  if (process.platform === 'win32') {
     execa.shellSync(`taskkill /F /T /PID ${proc.pid}`);
   } else {
     proc.kill('SIGKILL');
@@ -70,16 +70,18 @@ module.exports = class ReactScripts {
       ),
     };
 
+    console.log(`startProcess ${startProcess.pid} on ${port}`);
+
     if (smoke) {
       return await execaSafe('yarnpkg', ['start', '--smoke-test'], options);
     }
     const startProcess = execa('yarnpkg', ['start'], options);
-    startProcess.stdout.on('data', data => {
-      console.log(`startProcess ${port}: ${data}`.trim());
+    /*startProcess.stdout.on('data', data => {
+      console.log(`startProcess ${startProcess.pid} on ${port}: ${data}`.trim());
     });
     startProcess.stderr.on('data', data => {
-      console.log(`startProcesserr ${port}: ${data}`.trim());
-    });
+      console.log(`startProcess:err ${startProcess.pid} on ${port}: ${data}`.trim());
+    });*/
 
     await waitForLocalhost({ port });
     return {
@@ -106,13 +108,14 @@ module.exports = class ReactScripts {
         cwd: this.root,
       }
     );
+    console.log(`serveProcess ${serveProcess.pid} on ${port}`);
     await waitForLocalhost({ port });
-    serveProcess.stdout.on('data', data => {
+    /*serveProcess.stdout.on('data', data => {
       console.log(`serveProcess ${port}: ${data}`.trim());
     });
     serveProcess.stderr.on('data', data => {
       console.log(`serveProcessstderr ${port}: ${data}`.trim());
-    });
+    });*/
     return {
       port,
       done() {
