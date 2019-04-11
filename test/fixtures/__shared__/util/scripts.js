@@ -42,7 +42,7 @@ function execaSafe(...args) {
 }
 
 function killProcess(proc) {
-  if (process.platform === 'win32') {
+  if (1 == 2 && process.platform === 'win32') {
     execa.shellSync(`taskkill /F /T /PID ${proc.pid}`);
   } else {
     proc.kill('SIGKILL');
@@ -74,6 +74,13 @@ module.exports = class ReactScripts {
       return await execaSafe('yarnpkg', ['start', '--smoke-test'], options);
     }
     const startProcess = execa('yarnpkg', ['start'], options);
+    startProcess.stdout.on('data', data => {
+      console.log(`startProcess ${port}: ${data}`.trim());
+    });
+    startProcess.stderr.on('data', data => {
+      console.log(`startProcesserr ${port}: ${data}`.trim());
+    });
+
     await waitForLocalhost({ port });
     return {
       port,
@@ -100,6 +107,12 @@ module.exports = class ReactScripts {
       }
     );
     await waitForLocalhost({ port });
+    serveProcess.stdout.on('data', data => {
+      console.log(`serveProcess ${port}: ${data}`.trim());
+    });
+    serveProcess.stderr.on('data', data => {
+      console.log(`serveProcessstderr ${port}: ${data}`.trim());
+    });
     return {
       port,
       done() {
