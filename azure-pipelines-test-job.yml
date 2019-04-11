@@ -39,3 +39,5 @@ jobs:
 
   - bash: ${{ parameters.testScript }}
     displayName: 'Run test script'
+
+  - bash: ${{ parameters.}}
