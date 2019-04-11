@@ -86,8 +86,7 @@ git clean -df
 
 # Run all tests
 cd test/
-CI=true ../node_modules/.bin/jest -w 2 --show-config
-CI=true ../node_modules/.bin/jest -w 2
+CI=true ../node_modules/.bin/jest --runInBand
 
 # Cleanup
 cleanup
