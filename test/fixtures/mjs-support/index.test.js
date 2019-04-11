@@ -16,6 +16,8 @@ test('can use mjs library in development', async () => {
       ).pop().innerHTML;
     });
     expect(output).toMatchSnapshot();
+  } catch (e) {
+    console.error(e);
   } finally {
     await browser.close();
     done();
@@ -36,6 +38,8 @@ test('can use mjs library in production', async () => {
       ).pop().innerHTML;
     });
     expect(output).toMatchSnapshot();
+  } catch (e) {
+    console.error(e);
   } finally {
     await browser.close();
     done();
