@@ -41,6 +41,14 @@ function execaSafe(...args) {
     }));
 }
 
+function killProcess(proc) {
+  if (process.platform === 'win32') {
+    execa.shellSync(`taskkill /F /T /PID ${proc.pid}`);
+  } else {
+    proc.kill('SIGKILL');
+  }
+}
+
 module.exports = class ReactScripts {
   constructor(root) {
     this.root = root;
@@ -70,7 +78,7 @@ module.exports = class ReactScripts {
     return {
       port,
       done() {
-        startProcess.kill('SIGKILL');
+        killProcess(startProcess);
       },
     };
   }
@@ -95,7 +103,7 @@ module.exports = class ReactScripts {
     return {
       port,
       done() {
-        serveProcess.kill('SIGKILL');
+        killProcess(serveProcess);
       },
     };
   }

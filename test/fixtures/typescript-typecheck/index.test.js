@@ -17,7 +17,7 @@ test('shows error overlay in browser', async () => {
     });
     expect(overlayMsg).toContain(expectedErrorMsg);
   } finally {
-    browser.close();
+    await browser.close();
     done();
   }
 });
