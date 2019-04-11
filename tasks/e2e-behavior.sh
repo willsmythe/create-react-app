@@ -86,7 +86,7 @@ git clean -df
 
 # Run all tests
 cd test/
-CI=true ../node_modules/.bin/jest --runInBand
+CI=true npx jest --runInBand --detectOpenHandles --verbose --debug
 
 # Cleanup
 cleanup

@@ -51,7 +51,7 @@ packages:
 
 # log settings
 logs:
-  - {type: stdout, format: pretty, level: http}
+  - {type: stdout, format: pretty-timestamped, level: http}
   #- {type: file, path: verdaccio.log, level: info}
 
 # See https://github.com/verdaccio/verdaccio/issues/301
