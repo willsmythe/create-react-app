@@ -7,7 +7,7 @@ parameters:
   testScript: ''
   configurations:
     #LinuxNode8:    { vmImage: 'ubuntu-16.04',   nodeVersion: 8.x }
-    LinuxNode10:   { vmImage: 'ubuntu-16.04',   nodeVersion: 10.x }
+    #LinuxNode10:   { vmImage: 'ubuntu-16.04',   nodeVersion: 10.x }
     #MacNode88:      { vmImage: 'macOS-10.13',    nodeVersion: 8.x }
     #MacNode810:     { vmImage: 'macOS-10.13',    nodeVersion: 10.x }
     WindowsNode8:  { vmImage: 'vs2017-win2016', nodeVersion: 8.x }
