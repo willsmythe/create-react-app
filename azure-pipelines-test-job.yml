@@ -28,14 +28,14 @@ jobs:
   - checkout: self
     path: create-react-app
 
-  - bash: |
-      echo "registry=https://pkgs.dev.azure.com/willsmythe/_packaging/may2/npm/registry/" >> .npmrc
-      echo "always-auth=true" >> .npmrc
-  - task: npmAuthenticate@0
-    inputs:
-      workingFile: .npmrc
-  - bash: |
-      mv .npmrc ~
+  # - bash: |
+  #     echo "registry=https://pkgs.dev.azure.com/willsmythe/_packaging/may2/npm/registry/" >> .npmrc
+  #     echo "always-auth=true" >> .npmrc
+  # - task: npmAuthenticate@0
+  #   inputs:
+  #     workingFile: .npmrc
+  # - bash: |
+  #     mv .npmrc ~
 
   - task: NodeTool@0
     inputs:
