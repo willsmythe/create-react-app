@@ -30,12 +30,12 @@ jobs:
 
   - bash: |
       echo "registry=https://pkgs.dev.azure.com/willsmythe/_packaging/may2/npm/registry/" >> .npmrc
-      echo "always-auth=true" >> .npmrc
+      echo "always-auth=true" >> .
+      echo "$(ls -la .npmrc)"
   - task: npmAuthenticate@0
     inputs:
       workingFile: .npmrc
   - bash: |
-      echo "$(ls -la .npmrc)"
       mv .npmrc ~
       echo "$(ls -la ~/.npmrc)"
 
