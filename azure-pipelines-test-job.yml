@@ -6,9 +6,9 @@ parameters:
   name: ''
   testScript: ''
   configurations:
-    LinuxNode8:    { vmImage: 'ubuntu-16.04',   nodeVersion: 8.x  }
+   # LinuxNode8:    { vmImage: 'ubuntu-16.04',   nodeVersion: 8.x  }
     LinuxNode10:   { vmImage: 'ubuntu-16.04',   nodeVersion: 10.x }
-    WindowsNode8:  { vmImage: 'vs2017-win2016', nodeVersion: 8.x  }
+   # WindowsNode8:  { vmImage: 'vs2017-win2016', nodeVersion: 8.x  }
     WindowsNode10: { vmImage: 'vs2017-win2016', nodeVersion: 10.x }
     
 jobs:
@@ -27,6 +27,13 @@ jobs:
 
   - checkout: self
     path: create-react-app
+
+  - bash: touch .npmrc
+  - task: npmAuthenticate@0
+  - bash: |
+      mv .npmrc ~
+      echo "$(cat ~/.npmrc)"
+
 
   - task: NodeTool@0
     inputs:
