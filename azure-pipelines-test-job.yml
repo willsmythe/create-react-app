@@ -43,7 +43,7 @@ jobs:
       echo "$(ls -la ~/.npmrc)"
       echo "npm: $(npm config get registry)"
       echo "yarn c: $(yarn config list)"
-      yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/may2/npm/registry/
+      yarn config set registry https://pkgs.dev.azure.com/willsmythe/_packaging/may2/npm/registry//
       echo "yarn: $(yarn config get registry)"
 
   - task: NodeTool@0
@@ -53,6 +53,8 @@ jobs:
 
   - script: yarn --frozen-lockfile --verbose
     displayName: 'Run yarn'
+    env:
+      NODE_DEBUG: http
 
   - bash: ${{ parameters.testScript }}
     displayName: 'Run tests'
