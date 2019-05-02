@@ -6,7 +6,7 @@ original_yarn_registry_url=`yarn config get registry`
 default_verdaccio_package=verdaccio@3.8.2
 
 function startLocalRegistry {
-  if [ "$SKIP_VERDACCIO" == "true" ]; then
+  if [ -z "$SKIP_VERDACCIO" ]; then
     # Start local registry
     tmp_registry_log=`mktemp`
     echo "Registry output file: $tmp_registry_log"
@@ -20,11 +20,14 @@ function startLocalRegistry {
 
     # Login so we can publish packages
     (cd && npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r "$custom_registry_url")
+ else
+   echo "Using private registry"
+   mv ~/private.npmrc ~/.npmrc
  fi
 }
 
 function stopLocalRegistry {
-  if [ "$SKIP_VERDACCIO" == "true" ]; then
+   if [ -z "$SKIP_VERDACCIO" ]; then
     # Restore the original NPM and Yarn registry URLs and stop Verdaccio
     npm set registry "$original_npm_registry_url"
     yarn config set registry "$original_yarn_registry_url"
