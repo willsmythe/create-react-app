@@ -33,8 +33,7 @@ jobs:
       echo "always-auth=true" >> .
       echo "$(ls -la .npmrc)"
       echo "==="
-      echo "$(cat ~/.yarnrc)"
-      rm ~/.yarnrc
+      
   - task: npmAuthenticate@0
     inputs:
       workingFile: .npmrc
