@@ -30,6 +30,8 @@ jobs:
 
   - bash: touch .npmrc
   - task: npmAuthenticate@0
+    inputs:
+      workingFile: .npmrc
   - bash: |
       mv .npmrc ~
       echo "$(cat ~/.npmrc)"
