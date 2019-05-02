@@ -44,7 +44,7 @@ jobs:
       versionSpec: $(nodeVersion)
     displayName: 'Install Node.js'
 
-  - script: yarn --frozen-lockfile
+  - script: yarn --frozen-lockfile --verbose
     displayName: 'Run yarn'
 
   - bash: ${{ parameters.testScript }}
