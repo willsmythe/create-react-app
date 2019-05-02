@@ -28,13 +28,12 @@ jobs:
   - checkout: self
     path: create-react-app
 
-  - bash: touch .npmrc
   - task: npmAuthenticate@0
     inputs:
-      workingFile: .npmrc
+      workingFile: $(HOME)/.npmrc
   - bash: |
       mv .npmrc ~
-      echo "$(cat ~/.npmrc)"
+      echo "$(ls -la ~/.npmrc)"
 
 
   - task: NodeTool@0
