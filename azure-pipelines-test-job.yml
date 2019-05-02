@@ -38,6 +38,8 @@ jobs:
   - bash: |
       mv .npmrc ~
       echo "$(ls -la ~/.npmrc)"
+      echo "npm: $(npm config get registry)"
+      echo "yarn: $(yarn config get registry)"
 
   - task: NodeTool@0
     inputs:
