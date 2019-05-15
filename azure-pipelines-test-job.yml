@@ -20,13 +20,16 @@ jobs:
   #  vmImage: $(vmImage)
   steps:
   - script: |
-      git config --global core.autocrlf false
+      git config core.autocrlf false
       git config --global user.name "Create React App"
       git config --global user.email "cra@email.com"
     displayName: 'Initialize Git config'
 
   - checkout: self
     path: create-react-app
+
+  - restoreCache: package.json
+    path: $(YARN_CACHE_FOLDER)
 
   - task: NodeTool@0
     inputs:
@@ -35,6 +38,9 @@ jobs:
 
   - script: yarn --frozen-lockfile
     displayName: 'Run yarn'
+
+  - saveCache: package.json
+    path: $(YARN_CACHE_FOLDER)
 
   - bash: ${{ parameters.testScript }}
     displayName: 'Run tests'
