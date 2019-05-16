@@ -19,11 +19,11 @@ jobs:
   #pool:
   #  vmImage: $(vmImage)
   steps:
-  - script: |
-      git config core.autocrlf false
-      git config --global user.name "Create React App"
-      git config --global user.email "cra@email.com"
-    displayName: 'Initialize Git config'
+  # - script: |
+  #     git config core.autocrlf false
+  #     git config --global user.name "Create React App"
+  #     git config --global user.email "cra@email.com"
+  #   displayName: 'Initialize Git config'
 
   - checkout: self
     path: create-react-app
@@ -41,13 +41,10 @@ jobs:
   - script: yarn --frozen-lockfile
     displayName: 'Run yarn'
 
-  #- saveCache: package.json
-  #  path: $(YARN_CACHE_FOLDER)
-
   - task: SaveCache@0
     inputs:
       key: package.json
       path: $(YARN_CACHE_FOLDER)
 
-  - bash: ${{ parameters.testScript }}
-    displayName: 'Run tests'
+  # - bash: ${{ parameters.testScript }}
+  #   displayName: 'Run tests'
