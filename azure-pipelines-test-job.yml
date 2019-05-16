@@ -28,8 +28,10 @@ jobs:
   - checkout: self
     path: create-react-app
 
-  - restoreCache: package.json
-    path: $(YARN_CACHE_FOLDER)
+  - task: RestoreCache@0
+    inputs:
+      key: package.json
+      path: $(YARN_CACHE_FOLDER)
 
   - task: NodeTool@0
     inputs:
@@ -39,8 +41,13 @@ jobs:
   - script: yarn --frozen-lockfile
     displayName: 'Run yarn'
 
-  - saveCache: package.json
-    path: $(YARN_CACHE_FOLDER)
+  #- saveCache: package.json
+  #  path: $(YARN_CACHE_FOLDER)
+
+  - task: SaveCache@0
+    inputs:
+      key: package.json
+      path: $(YARN_CACHE_FOLDER)
 
   - bash: ${{ parameters.testScript }}
     displayName: 'Run tests'
