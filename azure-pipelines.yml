@@ -2,9 +2,6 @@
 # Azure Pipelines configuration for building and testing create-react-app on Linux, Windows, and macOS.
 #
 
-trigger:
-- master
-
 variables:
   CI: true
   # Overrides the Yarn and NPM cache directories so they are on the same drive as the source. This helps improve build performance on Windows hosted agents.
