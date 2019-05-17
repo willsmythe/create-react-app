@@ -4,6 +4,7 @@
     "packages/*"
   ],
   "scripts": {
+    "f": "1",
     "build": "cd packages/react-scripts && node bin/react-scripts.js build",
     "changelog": "lerna-changelog",
     "create-react-app": "node tasks/cra.js",

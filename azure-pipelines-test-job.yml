@@ -46,5 +46,9 @@ jobs:
       key: package.json
       path: $(YARN_CACHE_FOLDER)
 
+  - script: az storage blob upload-batch -d pipelinecaching -s $(YARN_CACHE_FOLDER)
+    env:
+      AZURE_STORAGE_CONNECTION_STRING: $(AZURE_STORAGE_CONNECTION_STRING_SECRET)
+
   # - bash: ${{ parameters.testScript }}
   #   displayName: 'Run tests'
